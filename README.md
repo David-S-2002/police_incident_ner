@@ -232,12 +232,6 @@ Chunking by sentences takes more computational time than chunking every `n` word
 
 Parallel programming would be an effective next step to improve computational time. Additionally, instead of using `pandas` to store and manipulate NER results, I can use `numpy` or `polars` for faster performance. 
 
-## Limitations and Known Bugs
-
-- The NER system for dates tags article publication dates. This is technically a false positive because it's not the date of the incident. However, the LLM can identify that that's not the police incident date.
-- NER will not detect dates where the day is an ordinal number (e.g.: "1st", "2nd", or "8th"). If that behavior is undesirable, the `validate_parsing()` function must be changed to allow dates in that format.
-- Because the documents are USA-based, all dates are parsed with the month first instead of the day first. (e.g.: "10/12/2025" is read as "October 10th, 2025", not "December 12th, 2025"). 
-
 ## Discussion & Conclusion
 
 Based on my findings so far, I believe NER is very promising for extracting dates. Combining NER with post-processing achieved nearly perfect accuracy for extracting dates. This was achieved using only a general NER model, and we did not need one that was fine-tuned to extract dates. If my findings hold true when the model is tested more rigorously, then I believe the NER system to extract dates, could almost completely mitigate the problem of LLM hallucinations. 
