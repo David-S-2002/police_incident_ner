@@ -1,3 +1,7 @@
+# Project Description
+
+This repository contains my work on an independent study project at Seattle University, mentored by Dr. Ariana Mendible. We conducted research that used data science to gather information about police misconduct incidents in Minneapolis. I implemented a named entity recognition (NER) system to extract information from our dataset of Minneapolis police complaint documents.
+
 # Usage Instructions
 
 ## File descriptions
@@ -30,11 +34,11 @@
 - NER may take a long time to finish running, especially when chunking by sentences, using a large DataFrame of documents, or including long documents in your DataFrame
 - Your NER results will be in the DataFrame returned by `run_ner_on_dataframe()`.
 
-# Named Entity Recognition for Police Misconduct Incidents in Minneapolis 
+# Project Explanation: Named Entity Recognition for Police Misconduct Incidents in Minneapolis 
 
 ## Introduction & Project Goals
 
-This repository is part of an independent study project at Seattle University, mentored by Dr. Ariana Mendible. I worked with two other students in the M.S. in Data Science program: Jesse Loi and Mark Daza. 
+This independent study was mentored by Dr. Ariana Mendible at Seattle University. I worked with two other students in the M.S. in Data Science program: Jesse Loi and Mark Daza. 
 
 As part of the Data Science, Police Accountability, Community Empowerment (DSPACE) group, Dr. Mendible did a research project on police misconduct in Minneapolis. This independent study is a continuation of that project. More specifically, her team conducted network analysis to understand how police misconduct is shaped by social dynamics between officers. In the network, each node represented an officer in the Minneapolis Police Department who had a complaint against them. Two officers had an edge between them if both were involved in the same complaint. 
 
