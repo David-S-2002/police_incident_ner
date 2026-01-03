@@ -1,3 +1,35 @@
+# Usage Instructions
+
+## File descriptions
+- `scraped_police_reports14.csv`: contains the raw data that Jesse Loi scraped from the CUAPB archive.
+- `police_reports.csv`: contains the cleaned texts and a unique integer ID for each text
+- `police_report_metadata.csv`: contains the following metadata about each police report text
+    - `name`: the name and badge number of the officer mentioned in that text
+    - `department`: the police department where that officer works
+    - `url`: the URL that the text was scraped from
+    - `text_id`: the unique integer ID for the text
+- `ner.py`: contains functions to run NER on a dataset of documents
+- `test_ner.ipynb`: contains the results of running NER on a small number of police documents
+- `data_prep.py`: performs data cleaning and preparation on the raw data
+
+## Prerequisites
+- Install Python and Visual Studio Code on your local machine
+
+## How to use this code
+
+1. Clone this repository and open it in Visual Studio Code.
+2. In VSCode, create a `venv` virtual environment and activate it.
+3. Inside the virtual environment, run the following command to install the necessary packages: `pip install flair pandas numpy nltk ftfy`.
+4. To run NER on our police incident documents:
+- Read `police_reports.csv` into a Pandas DataFrame. (This is done in the "Load Data" section of `test_ner.ipynb`)
+- Run the function `run_ner_on_dataframe()` in `ner.py` on that DataFrame. (For documentation on how to use that function, please refer to `ner.py`). Choose the following when calling `run_ner_on_dataframe()`:
+    - The chunking strategy: by sentences or every `n` words
+    - The value of `n`, if chunking by every `n` words
+    - Optionally, a confidence threshold for the NER model
+    - Whether to keep generic locations or only return specific ones
+- NER may take a long time to finish running, especially when chunking by sentences, using a large DataFrame of documents, or including long documents in your DataFrame
+- Your NER results will be in the DataFrame returned by `run_ner_on_dataframe()`.
+
 # Named Entity Recognition for Police Misconduct Incidents in Minneapolis 
 
 ## Introduction & Project Goals
@@ -245,35 +277,3 @@ Police misconduct is a topic that concerns people's safety and lives. If we are 
 However, we must think very carefully about the capabilities, strengths, weaknesses, accuracy, and appropriateness of any NLP model we consider. For example, our overall goal is to extract important information about police incidents. Dr. Mendible was interested in information about who the victim was, the amount of force used, and the disciplinary action taken. These are complex NLP tasks that go beyond simple named entity recognition. NER has a limited scope of information it can extract. It can detect a limited, generic set of categories (e.g.: name, organization, location, date, ...). Answering more complex questions about an article, while taking the whole article into context, is where an LLM excels. 
 
 I hope that NLP research (when used appropriately) will someday aid in police reform. Reading a large number of police incident documents takes far longer than using an NLP system to extract the information you seek. Using NLP systems like ours, one can quickly obtain concise information about specific police incidents from vast amounts of documents. Therefore, I hope that NLP systems enable activist organizations and local governments to take quicker beneficial action toward police reform, thus protecting the physical safety and lives of community members.
-
-# Usage Instructions
-
-## File descriptions
-- `scraped_police_reports14.csv`: contains the raw data that Jesse Loi scraped from the CUAPB archive.
-- `police_reports.csv`: contains the cleaned texts and a unique integer ID for each text
-- `police_report_metadata.csv`: contains the following metadata about each police report text
-    - `name`: the name and badge number of the officer mentioned in that text
-    - `department`: the police department where that officer works
-    - `url`: the URL that the text was scraped from
-    - `text_id`: the unique integer ID for the text
-- `ner.py`: contains functions to run NER on a dataset of documents
-- `test_ner.ipynb`: contains the results of running NER on a small number of police documents
-- `data_prep.py`: performs data cleaning and preparation on the raw data
-
-## Prerequisites
-- Install Python and Visual Studio Code on your local machine
-
-## How to use this code
-
-1. Clone this repository and open it in Visual Studio Code.
-2. In VSCode, create a `venv` virtual environment and activate it.
-3. Inside the virtual environment, run the following command to install the necessary packages: `pip install flair pandas numpy nltk ftfy`.
-4. To run NER on our police incident documents:
-- Read `police_reports.csv` into a Pandas DataFrame. (This is done in the "Load Data" section of `test_ner.ipynb`)
-- Run the function `run_ner_on_dataframe()` in `ner.py` on that DataFrame. (For documentation on how to use that function, please refer to `ner.py`). Choose the following when calling `run_ner_on_dataframe()`:
-    - The chunking strategy: by sentences or every `n` words
-    - The value of `n`, if chunking by every `n` words
-    - Optionally, a confidence threshold for the NER model
-    - Whether to keep generic locations or only return specific ones
-- NER may take a long time to finish running, especially when chunking by sentences, using a large DataFrame of documents, or including long documents in your DataFrame
-- Your NER results will be in the DataFrame returned by `run_ner_on_dataframe()`.
